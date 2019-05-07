@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Online Code Editor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./vs/editor/editor.main.css" />
+    <style>
+      html,
+      body,
+      #editor {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="editor"></div>
+    <script src="./vs/loader.js"></script>
+    <script>
+      require.config({
+        paths: { vs: 'vs' },
+        'vs/nls': {
+          availableLanguages: {
+            '*': 'zh-cn'
+          }
+        }
+      });
+      require(['vs/editor/editor.main'], function() {
+        var editor = monaco.editor.create(document.getElementById('editor'), {
+          model: monaco.editor.createModel('', 'javascript'),
+          theme: 'vs-dark'
+        });
+      });
+    </script>
+  </body>
+</html>
