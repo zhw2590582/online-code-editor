@@ -31,9 +31,13 @@
         }
       });
       require(['vs/editor/editor.main'], function() {
+        var search = new URLSearchParams(window.location.search);
         var editor = monaco.editor.create(document.getElementById('editor'), {
-          model: monaco.editor.createModel('', 'javascript'),
-          theme: 'vs-dark'
+          theme: 'vs-dark',
+          model: monaco.editor.createModel(
+            window.decodeURIComponent(search.get('value') || ''),
+            window.decodeURIComponent(search.get('language') || 'javascript')
+          )
         });
       });
     </script>
